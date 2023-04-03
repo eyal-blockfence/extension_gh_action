@@ -41,12 +41,9 @@ jobs:
 
             - name: Load environment variables
               run: |
-                  echo ${{ vars.API_SERVER }}
-                  echo ${{ vars.API_KEY }}
-                  echo ${{ vars.AMPLITUDE_KEY }}
-                  echo ${{ vars.API_SERVER }} >> .env.production
-                  echo ${{ vars.API_KEY }} >> .env.production
-                  echo ${{ vars.AMPLITUDE_KEY }} >> .env.production
+                  echo API_SERVER=${{ vars.API_SERVER }} >> .env.production
+                  echo API_KEY=${{ vars.API_KEY }} >> .env.production
+                  echo AMPLITUDE_KEY=${{ vars.AMPLITUDE_KEY }} >> .env.production
 
             - name: Build
               run: |
