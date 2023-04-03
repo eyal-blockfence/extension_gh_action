@@ -34,6 +34,7 @@ jobs:
             - name: Env test
               run: |
                   echo @@@@@
+                  echo ${{ env.AMPLITUDE_KEY }}
                   echo ${AMPLITUDE_KEY}
 
             - name: Install dependencies
