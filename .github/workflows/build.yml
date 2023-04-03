@@ -50,9 +50,11 @@ jobs:
                   npm run build
 
             - name: Compress build artifacts
-              uses: montudor/action-zip@v1
-              with:
-                  args: zip -qq -r blockfence-${{ github.event.inputs.version }}.zip build/*
+              run: zip -qq -r blockfence-${{ github.event.inputs.version }}.zip build/*
+            # - name: Compress build artifacts
+            #   uses: montudor/action-zip@v1
+            #   with:
+            #       args: zip -qq -r blockfence-${{ github.event.inputs.version }}.zip build
 
             - name: Release
               uses: softprops/action-gh-release@v1
