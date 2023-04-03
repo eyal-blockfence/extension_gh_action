@@ -20,45 +20,46 @@ jobs:
             - name: Env test
               run: |
                   echo @@@@@
+                  echo ${{ vars.AMPLITUDE_KEY }}
                   echo ${{ env.AMPLITUDE_KEY }}
                   echo ${AMPLITUDE_KEY}
 
-            - name: Checkout code
-              uses: actions/checkout@v3
+            # - name: Checkout code
+            #   uses: actions/checkout@v3
 
             # - name: Setup Node
             #   uses: actions/setup-node@v3
             #   with:
             #       node-version: 18
 
-            - name: Update manifest.json
-              run: |
-                  sed -i.bak "s/\"version\": \".*\"/\"version\": \"$GITHUB_ACTION_VERSION\"/" src/manifest.json && rm src/manifest.json.bak
-              env:
-                  GITHUB_ACTION_VERSION: ${{ github.event.inputs.version }}
+            # - name: Update manifest.json
+            #   run: |
+            #       sed -i.bak "s/\"version\": \".*\"/\"version\": \"$GITHUB_ACTION_VERSION\"/" src/manifest.json && rm src/manifest.json.bak
+            #   env:
+            #       GITHUB_ACTION_VERSION: ${{ github.event.inputs.version }}
 
-            - name: Install dependencies
-              run: |
-                  npm install
+            # - name: Install dependencies
+            #   run: |
+            #       npm install
 
-            - name: Set environment variable
-              run: |
-                  echo "NODE_ENV=production" >> $GITHUB_ENV
+            # - name: Set environment variable
+            #   run: |
+            #       echo "NODE_ENV=production" >> $GITHUB_ENV
 
-            - name: Build
-              run: |
-                  npm run build
+            # - name: Build
+            #   run: |
+            #       npm run build
 
-            - name: Compress build artifacts
-              uses: montudor/action-zip@v1
-              with:
-                  args: zip -qq -r release.zip build/
+            # - name: Compress build artifacts
+            #   uses: montudor/action-zip@v1
+            #   with:
+            #       args: zip -qq -r release.zip build/
 
-            - name: Release
-              uses: softprops/action-gh-release@v1
-              with:
-                  files: release.zip
-                  name: ${{ github.event.inputs.version }}
-                  tag_name: ${{ github.event.inputs.version }}
-                  generate_release_notes: true
-                  prerelease: true
+            # - name: Release
+            #   uses: softprops/action-gh-release@v1
+            #   with:
+            #       files: release.zip
+            #       name: ${{ github.event.inputs.version }}
+            #       tag_name: ${{ github.event.inputs.version }}
+            #       generate_release_notes: true
+            #       prerelease: true
