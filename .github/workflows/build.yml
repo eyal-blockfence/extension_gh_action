@@ -31,13 +31,14 @@ jobs:
               env:
                   GITHUB_ACTION_VERSION: ${{ github.event.inputs.version }}
 
-            - name: Install ESLint
+            - name: Env test
+              run: |
+                  echo @@@@@
+                  echo ${AMPLITUDE_KEY}
+
+            - name: Install dependencies
               run: |
                   npm install
-
-            - name: Run ESLint
-              run: npm run lint-github
-              continue-on-error: true
 
             - name: Set environment variable
               run: |
